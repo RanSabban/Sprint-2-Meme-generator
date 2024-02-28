@@ -10,25 +10,33 @@
 
 <body class="main-layout grid" onload="onInit()">
 
-    <header class="main-header">
-        <h1>Welcome to super duper meme generator</h1>
-        <nav class="main-nav-container">
-            
+    <header class="main-header grid full">
+        <nav class="main-nav-container grid">
+            <div class="logo">MEME</div>
+            <ul class="main-nav-list grid clean-list">
+                <li>Gallery</li>
+                <li>About</li>
+            </ul>
         </nav>
     </header>
 
-    <main class="main-container">
+    <main class="main-container grid">
 
+        <section class="editor-container grid">
+            <canvas class="canvas-editor" width="450" height="450"></canvas>
+            <section class="actions">
+                <label for="meme-text">Meme text:</label>
+                <input type="text" name="meme-text" id="meme-text" oninput="onTextChange(this.value)">
+            </section>
+        </section>
         <section class="gallery-container">
 
         </section>
-        <section class="editor-container">
-            <canvas class="canvas-editor" width="450" height="450"></canvas>
-        </section>
-
     </main>
     <footer class="footer-container">
 
     </footer>
     <script src="js/meme-controller.js"></script>
+    <script src="js/services/meme-service.js"></script>
+    <script src="js/gallery-controller.js"></script>
 </body>

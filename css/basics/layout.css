@@ -1,3 +1,19 @@
-body {
+.main-layout {
     justify-items: center;
+    grid-auto-flow: row;
+    grid-template-columns: 
+    minmax(20px,1fr)
+    minmax(auto,980px)
+    minmax(20px,1fr);
+    row-gap: 20px;
 }
+
+.main-layout > *:not(.full){
+    grid-column: 2;
+}
+.main-layout > *.full{
+    grid-column: 1/-1;
+}
+
+
+

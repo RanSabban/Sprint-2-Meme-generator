@@ -9,18 +9,20 @@ function onInit(){
     resizeCanvas()
     window.addEventListener('resize',resizeCanvas)
     renderMeme()
+    renderGallery()
 }
 
 function renderMeme(){
+    const meme = getMeme()
     let img = new Image()
-    img.src = 'img/1.jpg'
-    img.onload = () => onImageReady(img)
+    img.src = `img/${meme.selectedImgId}.jpg`
+    img.onload = () => onImageReady(img,meme.lines[0].txt)
 }
 
-function onImageReady(img){
+function onImageReady(img,txt){
     gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width
     gCtx.drawImage(img,0,0,gElCanvas.width,gElCanvas.height)
-    drawTxt()
+    drawTxt(txt)
 }
 
 function drawTxt(txt = 'Hello'){
@@ -29,6 +31,11 @@ function drawTxt(txt = 'Hello'){
     gCtx.font = '2em Tahoma'
     gCtx.fillStyle = 'red'
     gCtx.fillText(txt, gElCanvas.width/2,75)
+}
+
+function onTextChange(txt){
+    setLineTxt(txt)
+    renderMeme()
 }
 
 
