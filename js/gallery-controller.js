@@ -12,6 +12,7 @@ function renderGallery(){
 }
 
 function onImgSelect(id){
+    onEditorClick()
     setImg(id)
-    renderMeme()
+    onInit()
 }

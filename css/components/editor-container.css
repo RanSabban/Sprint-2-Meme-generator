@@ -1,5 +1,5 @@
 .editor-container{
-    display: grid;
+    display: none;
     grid-auto-flow: column;
     column-gap: 20px;
     background-color: white;

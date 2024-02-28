@@ -22,15 +22,15 @@ function renderMeme(){
     img.onload = () => onImageReady(img,meme.lines)
 }
 
-function onImageReady(img,txt){
+function onImageReady(img,lines){
     gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width
     gCtx.drawImage(img,0,0,gElCanvas.width,gElCanvas.height)
-    drawTxt(txt)
+    drawTxt(lines)
 }
 
-function drawTxt(line){
+function drawTxt(lines){
     let heightCounter = 75
-    line.forEach((line,idx) => {
+    lines.forEach((line,idx) => {
         gCtx.textAlign = 'center'
         gCtx.font = `${line.size}px Tahoma`
         gCtx.fillStyle = line.color
@@ -48,7 +48,6 @@ function markLine(line,x,y){
     gCtx.lineWidth = 2
     gCtx.rect(x-textWidth/2,y-line.size,textWidth + 5,line.size+2)
     gCtx.stroke()
-
 }
 
 function savePos(line,x,y){
