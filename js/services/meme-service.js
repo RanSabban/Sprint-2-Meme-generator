@@ -14,8 +14,14 @@ var gMeme = {
             txt: 'I love Falafel',
             size: 20, 
             color: 'blue'
+        },
+        {
+            txt: 'Shawarma',
+            size: 30,
+            color: 'red'
         }
     ]
+    
 }
 
 var gKeywordSearchCountMap = {'funny': 12, 'politics': 3, 'baby': 2}
@@ -24,15 +30,15 @@ function getMeme(){
     return gMeme
 }
 
-function setLineTxt(txt){
-    gMeme.lines[0].txt = txt
+function setLineTxt(txt,lineSelected){
+    gMeme.lines[lineSelected].txt = txt
     if (!txt){
         gMeme.lines[0].txt = 'Default'
     }
 }
 
-function updateColor(color){
-    gMeme.lines[0].color = color
+function updateColor(color,lineSelected){
+    gMeme.lines[lineSelected].color = color
 }
 
 function getImages(){
@@ -55,4 +61,12 @@ function setImg(id){
 
 function findImgById(id){
     return gImgs.find(image => image.id === id)
+}
+
+function addLine(){
+    gMeme.lines.push({
+        txt: '',
+        size: 20,
+        color: 'black'
+    })
 }

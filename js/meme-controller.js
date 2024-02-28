@@ -3,6 +3,7 @@
 let gElCanvas
 let gCtx
 let gCurrColor = 'black'
+let gCurrLine = 0
 
 function onInit(){
     gElCanvas = document.querySelector('.canvas-editor')
@@ -17,7 +18,7 @@ function renderMeme(){
     const meme = getMeme()
     let img = new Image()
     img.src = `img/${meme.selectedImgId}.jpg`
-    img.onload = () => onImageReady(img,meme.lines[0])
+    img.onload = () => onImageReady(img,meme.lines)
 }
 
 function onImageReady(img,txt){
@@ -27,20 +28,47 @@ function onImageReady(img,txt){
 }
 
 function drawTxt(line){
-    gCtx.textAlign = 'center'
-    gCtx.font = `${line.size}px Tahoma`
-    gCtx.fillStyle = gCurrColor
-    gCtx.fillText(line.txt, gElCanvas.width/2,75)
+    let heightCounter = 75
+    line.forEach((line,idx) => {
+        gCtx.textAlign = 'center'
+        gCtx.font = `${line.size}px Tahoma`
+        gCtx.fillStyle = line.color
+        gCtx.fillText(line.txt, gElCanvas.width/2,heightCounter)
+        if (gCurrLine === idx) markLine(line,gElCanvas.width/2,heightCounter)
+        heightCounter += 75
+    })
+}
+
+function markLine(line,x,y){
+    const textWidth = gCtx.measureText(line.txt).width
+    gCtx.beginPath()
+    gCtx.strokeStyle = 'black'
+    gCtx.lineWidth = 2
+    gCtx.rect(x-textWidth/2,y-line.size,textWidth + 5,line.size+2)
+    gCtx.stroke()
+
+}
+
+function onAddLine(){
+    addLine()
+    renderMeme()
+}
+
+function onSwitchLine(){
+    const memeLines = getMeme().lines
+    gCurrLine++
+    if (gCurrLine > memeLines.length - 1) gCurrLine = 0
+    renderMeme()
 }
 
 function onTextChange(txt){
-    setLineTxt(txt)
+    setLineTxt(txt,gCurrLine)
     renderMeme()
 }
 
 function onSetColor(color){
     gCurrColor = color
-    updateColor(color)
+    updateColor(color,gCurrLine)
     renderMeme()
 }
 
@@ -73,5 +101,6 @@ function resizeCanvas(){
     const elCanvasContainer = document.querySelector('.canvas-container')
     gElCanvas.width = elCanvasContainer.offsetWidth
     gElCanvas.height = elCanvasContainer.offsetHeight
+    renderMeme()
 }
 
