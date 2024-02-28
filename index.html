@@ -30,7 +30,12 @@
             <section class="actions">
                 <label for="meme-text">Meme text:</label>
                 <input type="text" name="meme-text" id="meme-text" oninput="onTextChange(this.value)">
+                <label for="color-selector">Color Select:</label>
+                <input type="color" name="color-selector" id="color-selector" onchange="onSetColor(this.value)">
+                <br>
                 <a href="#" class="download-link" onclick="downloadAsImg(this)" download="my-img.jpg">Download</a>
+                <button class="increase-font" onclick="onIncreaseFont()">Increase Font</button>
+                <button class="decrease-font" onclick="onDecreaseFont()">Decrease Font</button>
             </section>
         </section>
         <section class="gallery-container">

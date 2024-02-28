@@ -2,6 +2,7 @@
 
 let gElCanvas
 let gCtx
+let gCurrColor = 'black'
 
 function onInit(){
     gElCanvas = document.querySelector('.canvas-editor')
@@ -16,7 +17,7 @@ function renderMeme(){
     const meme = getMeme()
     let img = new Image()
     img.src = `img/${meme.selectedImgId}.jpg`
-    img.onload = () => onImageReady(img,meme.lines[0].txt)
+    img.onload = () => onImageReady(img,meme.lines[0])
 }
 
 function onImageReady(img,txt){
@@ -25,16 +26,31 @@ function onImageReady(img,txt){
     drawTxt(txt)
 }
 
-function drawTxt(txt = 'Hello'){
-    // gCtx.beginPath()
-    gCtx.textAlign = "center"
-    gCtx.font = '2em Tahoma'
-    gCtx.fillStyle = 'red'
-    gCtx.fillText(txt, gElCanvas.width/2,75)
+function drawTxt(line){
+    gCtx.textAlign = 'center'
+    gCtx.font = `${line.size}px Tahoma`
+    gCtx.fillStyle = gCurrColor
+    gCtx.fillText(line.txt, gElCanvas.width/2,75)
 }
 
 function onTextChange(txt){
     setLineTxt(txt)
+    renderMeme()
+}
+
+function onSetColor(color){
+    gCurrColor = color
+    updateColor(color)
+    renderMeme()
+}
+
+function onIncreaseFont(){
+    increaseFont()
+    renderMeme()
+}
+
+function onDecreaseFont(){
+    decreaseFont()
     renderMeme()
 }
 

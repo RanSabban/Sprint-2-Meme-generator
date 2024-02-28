@@ -31,9 +31,22 @@ function setLineTxt(txt){
     }
 }
 
+function updateColor(color){
+    gMeme.lines[0].color = color
+}
+
 function getImages(){
     return gImgs
 }
+
+function increaseFont(){
+    gMeme.lines[0].size += 2
+}
+
+function decreaseFont(){
+    gMeme.lines[0].size -= 2
+}
+
 
 function setImg(id){
     const image = findImgById(id)
