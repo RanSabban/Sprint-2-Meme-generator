@@ -1,0 +1,16 @@
+.main-header{
+    grid-auto-flow: column;
+    grid-template-columns: 
+    minmax(20px,1fr)
+    minmax(auto,980px)
+    minmax(20px,1fr);
+    background-color: #1DA898;
+    height: 80px;
+    width: 100%;
+    border-radius: 1em;
+    align-items: center;
+}
+
+.main-header > * {
+    grid-column: 2;
+}

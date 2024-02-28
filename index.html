@@ -14,19 +14,23 @@
         <nav class="main-nav-container grid">
             <div class="logo">MEME</div>
             <ul class="main-nav-list grid clean-list">
-                <li>Gallery</li>
-                <li>About</li>
+                <li><button onclick="onEditorClick()">Editor</button></li>
+                <li><button onclick="onGalleryClick()">Gallery</button></li>
+                <li><button onclick="onAboutClick()">About</button></li>
             </ul>
         </nav>
     </header>
 
     <main class="main-container grid">
 
-        <section class="editor-container grid">
-            <canvas class="canvas-editor" width="450" height="450"></canvas>
+        <section class="editor-container">
+            <section class="canvas-container">
+                <canvas class="canvas-editor" width="450" height="450"></canvas>
+            </section>
             <section class="actions">
                 <label for="meme-text">Meme text:</label>
                 <input type="text" name="meme-text" id="meme-text" oninput="onTextChange(this.value)">
+                <a href="#" class="download-link" onclick="downloadAsImg(this)" download="my-img.jpg">Download</a>
             </section>
         </section>
         <section class="gallery-container">

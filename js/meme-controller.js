@@ -38,10 +38,23 @@ function onTextChange(txt){
     renderMeme()
 }
 
+function downloadAsImg(elLink){
+    const imgContent = gElCanvas.toDataURL('image/png')
+    elLink.href = imgContent
+}
 
+function onGalleryClick(){
+    document.querySelector('.editor-container').style.display = 'none'
+    document.querySelector('.gallery-container').style.display = 'grid'
+}
+
+function onEditorClick(){
+    document.querySelector('.editor-container').style.display = 'grid'
+    document.querySelector('.gallery-container').style.display = 'none'
+}
 
 function resizeCanvas(){
-    const elCanvasContainer = document.querySelector('.editor-container')
+    const elCanvasContainer = document.querySelector('.canvas-container')
     gElCanvas.width = elCanvasContainer.offsetWidth
     gElCanvas.height = elCanvasContainer.offsetHeight
 }

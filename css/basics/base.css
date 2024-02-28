@@ -6,3 +6,8 @@ html{
 body {
     background-color: whitesmoke;
 }
+
+button {
+    cursor: pointer;
+    appearance: none;
+}
