@@ -12,6 +12,7 @@ function onInit(){
     window.addEventListener('resize',resizeCanvas)
     renderMeme()
     renderGallery()
+    addMouseListeners()
 }
 
 function renderMeme(){
@@ -34,6 +35,7 @@ function drawTxt(line){
         gCtx.font = `${line.size}px Tahoma`
         gCtx.fillStyle = line.color
         gCtx.fillText(line.txt, gElCanvas.width/2,heightCounter)
+        savePos(line,gElCanvas.width/2,heightCounter)
         if (gCurrLine === idx) markLine(line,gElCanvas.width/2,heightCounter)
         heightCounter += 75
     })
@@ -47,6 +49,29 @@ function markLine(line,x,y){
     gCtx.rect(x-textWidth/2,y-line.size,textWidth + 5,line.size+2)
     gCtx.stroke()
 
+}
+
+function savePos(line,x,y){
+    const textWidth = gCtx.measureText(line.txt).width
+    line.x = x
+    line.y = y - line.size/2
+    line.width = textWidth
+}
+
+function onClick(ev){
+    const pos = getEvPos(ev)
+    const lineSelectedIdx = checkIfSelected(pos)
+    if (lineSelectedIdx === -1) return
+        gCurrLine = lineSelectedIdx
+        renderMeme()
+}
+
+function getEvPos(ev){
+    let pos = {
+        x: ev.offsetX,
+        y: ev.offsetY
+    }
+    return pos
 }
 
 function onAddLine(){
@@ -73,12 +98,12 @@ function onSetColor(color){
 }
 
 function onIncreaseFont(){
-    increaseFont()
+    increaseFont(gCurrLine)
     renderMeme()
 }
 
 function onDecreaseFont(){
-    decreaseFont()
+    decreaseFont(gCurrLine)
     renderMeme()
 }
 
@@ -104,3 +129,9 @@ function resizeCanvas(){
     renderMeme()
 }
 
+function addMouseListeners(){
+    gElCanvas.addEventListener('click', onClick)
+    // gElCanvas.addEventListener('mousedown', onDown)
+    // gElCanvas.addEventListener('mousemove', onMove)
+    // gElCanvas.addEventListener('mouseup', onUp)
+}
