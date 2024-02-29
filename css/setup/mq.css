@@ -1,0 +1,24 @@
+@media (max-width: 860px){
+    .main-container{
+        justify-content: space-around;
+    }
+    .editor-container{
+        grid-auto-flow: row;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        column-gap: 0;
+        justify-content: space-around;
+    }
+    .canvas-continer, canvas{
+        grid-column: 1/-1;
+        width: 80vw;
+        grid-row: 1;
+    }
+    .actions{
+        grid-column: 1/-1;
+        justify-self: center;
+        width: 90vw;
+        grid-row: 2;
+    }
+    
+}

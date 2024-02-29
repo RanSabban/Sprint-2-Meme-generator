@@ -1,13 +1,14 @@
 html{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-align: center;
-}
-
-body {
-    background-color: whitesmoke;
+    background-image: url(../../img/black-bgc.jpg);
 }
 
 button {
     cursor: pointer;
     appearance: none;
+}
+
+img{
+    width: 100%;
 }

@@ -32,7 +32,7 @@ function drawTxt(lines){
     let heightCounter = 75
     lines.forEach((line,idx) => {
         gCtx.textAlign = 'center'
-        gCtx.font = `${line.size}px Tahoma`
+        gCtx.font = `${line.size}px ${line.font}`
         gCtx.fillStyle = line.color
         gCtx.fillText(line.txt, gElCanvas.width/2,heightCounter)
         savePos(line,gElCanvas.width/2,heightCounter)
@@ -103,6 +103,11 @@ function onIncreaseFont(){
 
 function onDecreaseFont(){
     decreaseFont(gCurrLine)
+    renderMeme()
+}
+
+function onFontSelect(font){
+    updateFont(font,gCurrLine)
     renderMeme()
 }
 

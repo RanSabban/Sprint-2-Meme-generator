@@ -1,10 +1,6 @@
 'use strict'
 
-var gImgs = [
-    {id: 1, url: 'img/1.jpg', keywords: ['funny','politics']},
-    {id: 2, url: 'img/2.jpg', keywords: ['funny','politics']},
-    {id: 3, url: 'img/3.jpg', keywords: ['funny','politics']},
-]
+var gImgs 
 
 var gMeme = {
     selectedImgId: 1, 
@@ -13,18 +9,22 @@ var gMeme = {
         {
             txt: 'I love Falafel',
             size: 20, 
-            color: 'blue'
+            color: 'black',
+            font: 'Impact'
         },
         {
             txt: 'Shawarma',
             size: 30,
-            color: 'red'
+            color: 'black',
+            font: 'Impact'
         }
     ]
     
 }
 
 var gKeywordSearchCountMap = {'funny': 12, 'politics': 3, 'baby': 2}
+var gKeyWords = ['funny','politics','actors','toys','serious']
+let gFilterBy = ''
 
 function getMeme(){
     return gMeme
@@ -42,7 +42,45 @@ function updateColor(color,lineSelected){
 }
 
 function getImages(){
-    return gImgs
+    if (!gImgs){
+        __createImgs()
+    }
+    
+    const images = gImgs.filter((image) => filterByCheck(image))
+    return images
+}
+
+function filterByCheck(image){
+    for (var i = 0; i < image.keyWords.length;i++){
+        if (image.keyWords[i].toLowerCase().includes(gFilterBy.toLowerCase())){
+            return true
+        }
+    }
+    return false
+}
+
+function setFilterBy(filterBy){
+    gFilterBy = filterBy
+}
+
+function generateKeywords(){
+    var keyWords = []
+    for (var i = 0; i < 2; i++){
+        keyWords.push(gKeyWords[getRandomIntInclusive(0,4)])
+    }
+    return keyWords
+}
+
+function __createImgs(){
+    var images = []
+    for (var i = 0; i < 18; i++){
+        images.push ({
+            id: i+1,
+            url: `img/${i+1}.jpg`,
+            keyWords: generateKeywords()
+        })
+    }
+    gImgs = images
 }
 
 function increaseFont(lineSelected){
@@ -67,8 +105,13 @@ function addLine(){
     gMeme.lines.push({
         txt: '',
         size: 20,
-        color: 'black'
+        color: 'black',
+        font: 'Impact'
     })
+}
+
+function updateFont(font,lineSelected){
+    gMeme.lines[lineSelected].font = font
 }
 
 function checkIfSelected(pos){

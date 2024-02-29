@@ -1,3 +1,19 @@
-.gallery-container{
+.images-container{
     display: grid;
+    grid-template-columns: repeat(5,minmax(100px,1fr));
+    grid-template-rows: auto;
+    /* grid-auto-flow: column; */
+    gap: 10px;
+}
+/* 
+.gallery-container img:nth-child(even){
+    grid-column: 2;
+}
+
+.gallery-container img:nth-child(odd){
+    grid-column: 1;
+} */
+
+.gallery-container img {
+
 }
