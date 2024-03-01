@@ -16,6 +16,8 @@ var gMeme = {
             color: 'black',
             font: 'Impact',
             align: 'center',
+            x: 50,
+            y: 75
         },
         {
             txt: 'Shawarma',
@@ -23,6 +25,8 @@ var gMeme = {
             color: 'black',
             font: 'Impact',
             align: 'center',
+            x: 50,
+            y: 150
         }
     ]
     
@@ -143,6 +147,20 @@ function centerAligment(lineSelected){
 
 function rightAligment(lineSelected){
     gMeme.lines[lineSelected].align = 'right'
+}
+
+function arrowDown(lineSelected){
+    gMeme.lines[lineSelected].y += 2
+}
+
+function arrowUp(lineSelected){
+    gMeme.lines[lineSelected].y -= 2
+}
+
+function moveText(diffX,diffY,lineSelected){
+    gMeme.lines[lineSelected].align = 'released'
+    gMeme.lines[lineSelected].x += diffX
+    gMeme.lines[lineSelected].y += diffY
 }
 
 function setLoadedMeme(meme){

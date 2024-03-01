@@ -4,6 +4,7 @@ let gElCanvas
 let gCtx
 let gCurrColor = 'black'
 let gCurrLine = 0
+let gIsGrabbed = false
 
 function onInit(){
     gElCanvas = document.querySelector('.canvas-editor')
@@ -13,6 +14,7 @@ function onInit(){
     renderMeme()
     renderGallery()
     addMouseListeners()
+    addKeyboardListeners()
     renderSavedMemes()
 }
 
@@ -35,22 +37,29 @@ function drawTxt(lines){
         gCtx.textAlign = 'center'
         gCtx.font = `${line.size}px ${line.font}`
         gCtx.fillStyle = line.color
-        if (line.align === 'left'){
-            const x = gCtx.measureText(line.txt).width/2
-            gCtx.fillText(line.txt,x,heightCounter)
-            savePos(line,x,heightCounter)
+        if (gIsGrabbed){
+            gCtx.fillText(line.txt,line.x,line.y)
+            savePos(line,line.x,line.y)
+        } else {
+            if (line.align === 'left'){
+                const x = gCtx.measureText(line.txt).width/2
+                gCtx.fillText(line.txt,x,line.y)
+                savePos(line,x,line.y)
+            }
+            if (line.align === 'center'){
+                gCtx.fillText(line.txt,gElCanvas.width/2,line.y)
+                savePos(line,gElCanvas.width/2,line.y)
+            }
+            if (line.align === 'right'){
+                const x = gElCanvas.width - gCtx.measureText(line.txt).width/2
+                gCtx.fillText(line.txt,x,line.y)
+                savePos(line,x,line.y)
+            }
+            if (line.align === 'released'){
+                gCtx.fillText(line.txt,line.x,line.y)
+                savePos(line,line.x,line.y)
+            }
         }
-        if (line.align === 'center'){
-            gCtx.fillText(line.txt,gElCanvas.width/2,heightCounter)
-            savePos(line,gElCanvas.width/2,heightCounter)
-        }
-        if (line.align === 'right'){
-            const x = gElCanvas.width - gCtx.measureText(line.txt).width/2
-            gCtx.fillText(line.txt,x,heightCounter)
-            savePos(line,x,heightCounter)
-        }
-        
-        // if (gCurrLine === idx) markLine(line,gElCanvas.width/2,heightCounter)
         if (gCurrLine === idx) markLine(line,line.x,line.y)
         heightCounter += 75
     })
@@ -61,14 +70,15 @@ function markLine(line,x,y){
     gCtx.beginPath()
     gCtx.strokeStyle = 'black'
     gCtx.lineWidth = 2
-    gCtx.rect(x-textWidth/2,y-line.size/2,textWidth + 5,line.size+2)
+    gCtx.rect(x-textWidth/2,y-line.size,textWidth + 5,line.size+2)
     gCtx.stroke()
 }
 
 function savePos(line,x,y){
     const textWidth = gCtx.measureText(line.txt).width
     line.x = x
-    line.y = y - line.size/2
+    // line.y = y - line.size/2
+    line.y = y 
     line.width = textWidth
 }
 
@@ -78,6 +88,29 @@ function onClick(ev){
     if (lineSelectedIdx === -1) return
         gCurrLine = lineSelectedIdx
         renderMeme()
+}
+
+function onDown(ev){
+    const pos = getEvPos(ev)
+    const lineSelectedIdx = checkIfSelected(pos)
+    if (lineSelectedIdx === -1) return 
+    gCurrLine = lineSelectedIdx
+    gIsGrabbed = true
+    renderMeme()
+}
+
+function onMove(ev){
+    if (!gIsGrabbed) return 
+    const pos = getEvPos(ev)
+    const meme = getMeme()
+    const diffX = pos.x - meme.lines[gCurrLine].x
+    const diffY = pos.y - meme.lines[gCurrLine].y
+    moveText(diffX,diffY,gCurrLine)
+    renderMeme()
+}
+
+function onUp(){
+    gIsGrabbed = false
 }
 
 function getEvPos(ev){
@@ -175,9 +208,30 @@ function resizeCanvas(){
 
 function addMouseListeners(){
     gElCanvas.addEventListener('click', onClick)
-    // gElCanvas.addEventListener('mousedown', onDown)
-    // gElCanvas.addEventListener('mousemove', onMove)
-    // gElCanvas.addEventListener('mouseup', onUp)
+    gElCanvas.addEventListener('mousedown', onDown)
+    gElCanvas.addEventListener('mousemove', onMove)
+    gElCanvas.addEventListener('mouseup', onUp)
+}
+
+
+
+function addKeyboardListeners(){
+    document.addEventListener('keydown', onKeyDown)
+     
+}
+
+function onKeyDown(ev){
+    if (ev.key === 'ArrowDown'){
+        ev.preventDefault()
+        arrowDown(gCurrLine)
+        renderMeme()
+    }
+
+    if (ev.key === 'ArrowUp'){
+        ev.preventDefault()
+        arrowUp(gCurrLine)
+        renderMeme()
+    }
 }
 
 function onLoadMeme(id){
