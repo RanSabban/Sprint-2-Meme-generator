@@ -10,8 +10,8 @@ function renderGallery(){
 }
 
 function onImgSelect(id){
-    onEditorClick()
     setImg(id)
+    onEditorClick()
     onInit()
 }
 

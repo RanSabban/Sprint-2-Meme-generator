@@ -1,6 +1,10 @@
 'use strict'
 
 var gImgs 
+const MEMES_KEY = 'memesDB'
+const IMGS_KEY = 'imgsDB'
+var gMemesDB = []
+var gImgsDB = []
 
 var gMeme = {
     selectedImgId: 1, 
@@ -10,13 +14,15 @@ var gMeme = {
             txt: 'I love Falafel',
             size: 20, 
             color: 'black',
-            font: 'Impact'
+            font: 'Impact',
+            align: 'center',
         },
         {
             txt: 'Shawarma',
             size: 30,
             color: 'black',
-            font: 'Impact'
+            font: 'Impact',
+            align: 'center',
         }
     ]
     
@@ -106,7 +112,8 @@ function addLine(){
         txt: '',
         size: 20,
         color: 'black',
-        font: 'Impact'
+        font: 'Impact',
+        align: 'center',
     })
 }
 
@@ -124,4 +131,44 @@ function checkIfSelected(pos){
         }
     })
     return selectedLineIdx
+}
+
+function leftAligment(lineSelected){
+    gMeme.lines[lineSelected].align = 'left'
+}
+
+function centerAligment(lineSelected){
+    gMeme.lines[lineSelected].align = 'center'
+}
+
+function rightAligment(lineSelected){
+    gMeme.lines[lineSelected].align = 'right'
+}
+
+function setLoadedMeme(meme){
+    gMeme = meme
+}
+
+function getSavedImgs(){
+    const savedImgs = loadFromStorage(IMGS_KEY)
+    return savedImgs
+}
+
+function getSavedMemes(){
+    const savedMemes = loadFromStorage(MEMES_KEY)
+    return savedMemes
+}
+
+function saveMemes(id){
+    const meme = gMeme
+    meme.id = id
+    gMemesDB.push(meme)
+    saveToStorage(MEMES_KEY,gMemesDB)
+}
+
+function saveImages(imageData,id){
+    gImgsDB = loadFromStorage(IMGS_KEY)
+    if (!gImgsDB) gImgsDB = []
+    gImgsDB.push({id: id,src: imageData})
+    saveToStorage(IMGS_KEY,gImgsDB)
 }
