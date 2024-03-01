@@ -48,6 +48,8 @@ svg{
     grid-row: 2;
     grid-column: 1;
     justify-self: end;
+    width: 5vw;
+    align-self: center;
 }
 
 .color-selector{
@@ -55,26 +57,34 @@ svg{
     visibility: hidden;
 }
 
-.decrease-font, .increase-font{
-    display: inline;
-    appearance: none;
-    text-decoration: none;
-    border: none;
-    /* background-color: rgba(92, 92, 92, 0.); */
+.decrease-font, .increase-font ,.label-color-selector, .label-color-selector svg{
+    width: 5vw;
+    border-radius: 1em;
+    border-color: rgba(0, 0, 0, 0.828);
+    border-style: solid;
+    background-color: rgb(255, 179, 0);
+    box-shadow: 0 0 5px 2px rgb(246, 255, 0);
+    transition: 0.5s;
+    align-self: center;
+}
+
+.decrease-font:hover, .increase-font:hover, .label-color-selector:hover, .label-color-selector svg:hover{
+    box-shadow: 0 0 10px 5px rgba(0, 255, 0, 0.773);
+    scale: 1.05;
 }
 
 .decrease-font {
     grid-row: 2;
     grid-column: 3;
     justify-self: start;
-    background-color: rgba(245, 245, 245, 0.547);
+    /* background-color: rgba(245, 245, 245, 0.547); */
 }
 
 .increase-font {
     grid-row: 2;
     grid-column: 2;
     justify-self: center;
-    background-color: rgba(245, 245, 245, 0.547);
+    /* background-color: rgba(245, 245, 245, 0.547); */
 }
 
 .add-line{
@@ -89,6 +99,14 @@ svg{
     grid-column: 1;
     justify-self: end;
     background-color: rgba(245, 245, 245, 0.547);
+}
+
+.delete-line{
+    grid-row: 3;
+    grid-column: 3;
+    justify-self: start;
+    background-color: rgba(245, 245, 245, 0.547);
+
 }
 
 .left-aligment{

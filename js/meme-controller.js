@@ -12,7 +12,7 @@ function onInit(){
     resizeCanvas()
     window.addEventListener('resize',resizeCanvas)
     renderMeme()
-    renderGallery()
+    // renderGallery()
     addMouseListeners()
     addKeyboardListeners()
     renderSavedMemes()
@@ -20,8 +20,15 @@ function onInit(){
 
 function renderMeme(){
     const meme = getMeme()
-    let img = new Image()
-    img.src = `img/${meme.selectedImgId}.jpg`
+    // const images = getImages()
+    const image = findImgById(meme.selectedImgId)
+    if (image.isUserUpload){
+        var img = new Image()
+        img.src = image.img.src
+    } else {
+        var img = new Image()
+        img.src = `img/${meme.selectedImgId}.jpg`
+    }
     img.onload = () => onImageReady(img,meme.lines)
 }
 
@@ -86,8 +93,8 @@ function onClick(ev){
     const pos = getEvPos(ev)
     const lineSelectedIdx = checkIfSelected(pos)
     if (lineSelectedIdx === -1) return
-        gCurrLine = lineSelectedIdx
-        renderMeme()
+    gCurrLine = lineSelectedIdx
+    renderMeme()
 }
 
 function onDown(ev){
@@ -123,6 +130,8 @@ function getEvPos(ev){
 
 function onAddLine(){
     addLine()
+    const meme = getMeme()
+    gCurrLine = meme.lines.length - 1
     renderMeme()
 }
 
@@ -174,6 +183,11 @@ function onRightAligment(){
     renderMeme()
 }
 
+function onDeleteLine(){
+    deleteLine(gCurrLine)
+    renderMeme()
+}
+
 function downloadAsImg(elLink){
     const imgContent = gElCanvas.toDataURL('image/png')
     elLink.href = imgContent
@@ -217,7 +231,7 @@ function addMouseListeners(){
 
 function addKeyboardListeners(){
     document.addEventListener('keydown', onKeyDown)
-     
+    
 }
 
 function onKeyDown(ev){

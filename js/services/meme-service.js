@@ -103,8 +103,17 @@ function decreaseFont(lineSelected){
 
 
 function setImg(id){
-    const image = findImgById(id)
-    gMeme.selectedImgId = image.id
+    // const image = findImgById(id)
+    // gMeme.selectedImgId = image.id
+    gMeme.selectedImgId = id
+}
+
+function updateImages(id,img){
+    gImgs.push({
+        id: id,
+        img: img,
+        isUserUpload: true
+    })
 }
 
 function findImgById(id){
@@ -118,7 +127,12 @@ function addLine(){
         color: 'black',
         font: 'Impact',
         align: 'center',
+        y: 100,
     })
+}
+
+function deleteLine(lineSelected){
+    gMeme.lines.splice(lineSelected,1)
 }
 
 function updateFont(font,lineSelected){
@@ -163,6 +177,24 @@ function moveText(diffX,diffY,lineSelected){
     gMeme.lines[lineSelected].y += diffY
 }
 
+function createMeme(id,txt){
+    gMeme = {
+        selectedImgId: id, 
+        selectedLineIdx: 0, 
+        lines: [
+            {
+                txt: txt,
+                size: 30, 
+                color: 'black',
+                font: 'Impact',
+                align: 'center',
+                x: 50,
+                y: 75
+            },
+        ]
+    }
+}
+
 function setLoadedMeme(meme){
     gMeme = meme
 }
@@ -190,3 +222,7 @@ function saveImages(imageData,id){
     gImgsDB.push({id: id,src: imageData})
     saveToStorage(IMGS_KEY,gImgsDB)
 }
+
+// function saveUserUploadedImg(id,img){
+
+// }
