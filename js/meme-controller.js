@@ -249,7 +249,9 @@ function onKeyDown(ev){
 }
 
 function onLoadMeme(id){
+    console.log(id);
     const memes = getSavedMemes()
+    console.log(memes);
     const meme = memes.find(meme => meme.id === id)
     console.log(meme);
     setLoadedMeme(meme)

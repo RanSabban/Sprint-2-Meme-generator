@@ -3,7 +3,7 @@
     grid-auto-flow: row;
     grid-template-columns: 
     minmax(20px,1fr)
-    minmax(auto,980px)
+    minmax(auto,90vw)
     minmax(20px,1fr);
     row-gap: 20px;
 }

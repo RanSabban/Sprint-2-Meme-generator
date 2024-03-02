@@ -1,4 +1,35 @@
 @media (max-width: 860px){
+    .main-layout{
+        grid-template-columns: 1fr;
+    }
+
+    .main-header {
+        position: absolute;
+        /* top: 70px; */
+        left: 0;
+        width: 95vw;
+        display: grid;
+        grid-template-rows: 0fr;
+        overflow: hidden;
+        transition: grid-template-rows 1s;
+        align-items: end;
+    }
+
+    .main-nav-container{
+        position: fixed;
+        grid-auto-flow: row;
+        grid-template-columns: 20vw;
+        justify-content: space-around;
+    }
+
+    body {
+        height: 100vh;
+    }
+    .main-header {
+        padding: 20px 0;
+        min-height: auto;
+    }
+
     .main-container{
         justify-content: space-around;
     }
@@ -9,10 +40,11 @@
         column-gap: 0;
         justify-content: space-around;
     }
-    .canvas-continer, canvas{
+    .canvas-continer, .canvas-editor{
         grid-column: 1/-1;
         width: 80vw;
         grid-row: 1;
+        justify-self: center;
     }
     .actions{
         grid-column: 1/-1;

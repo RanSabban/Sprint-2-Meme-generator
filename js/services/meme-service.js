@@ -210,6 +210,8 @@ function getSavedMemes(){
 }
 
 function saveMemes(id){
+    gMemesDB = loadFromStorage(MEMES_KEY)
+    if (!gMemesDB) gMemesDB = []
     const meme = gMeme
     meme.id = id
     gMemesDB.push(meme)
