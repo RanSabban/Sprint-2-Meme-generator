@@ -144,7 +144,7 @@ svg{
     padding: 5px;
     width: 20vw;
     text-decoration: none;
-    background-color: rgba(42, 42, 218, 0.894);
+    background-color: rgba(187, 221, 52, 0.894);
     color: whitesmoke;
     border-radius: 1em;
     margin-bottom: 3px;
@@ -173,5 +173,24 @@ svg{
 }
 
 .share-to-fb:hover{
+    scale: 1.1;
+}
+
+.remove-frame{
+    width: 25%;
+    /* width: 20vw; */
+    justify-self: center;
+    padding: 5px;
+    text-decoration: none;
+    background-color: rgba(99, 209, 106, 0.813);
+    color: whitesmoke;
+    border-radius: 1em;
+    margin-bottom: 3px;
+    margin-right: 3px;
+    border: none;
+    transition: 0.6s;
+}
+
+.remove-frame:hover{
     scale: 1.1;
 }

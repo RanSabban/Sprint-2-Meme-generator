@@ -94,11 +94,11 @@ function __createImgs(){
 }
 
 function increaseFont(lineSelected){
-    gMeme.lines[lineSelected].size += 2
+    gMeme.lines[lineSelected].size += 8
 }
 
 function decreaseFont(lineSelected){
-    gMeme.lines[lineSelected].size -= 2
+    gMeme.lines[lineSelected].size -= 8
 }
 
 
