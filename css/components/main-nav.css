@@ -11,14 +11,26 @@
     transform: translateX(200%);
     transition-property: transform;
     transition-duration: 0.6s;
+    column-gap: 1vw;
   
 }
 
 .main-nav-list li button{
-    background-color: rgba(255, 255, 255, 0);
-    color: #F2F9F7;
-    border: none;
+    background-color: rgba(63, 63, 63, 0.756);
+    padding: 5px;
+    color: #14b688;
+    border-radius: 1em;
+    border-width: 2px;
+    border-color: whitesmoke;
+    border-style: solid ;
     font-size: 1.3125rem;
+    box-shadow: 0px 2px 6px 4px rgba(3, 172, 15, 0.654);    
+    transition: 0.6s;
+}
+
+.main-nav-list li button:hover{
+    scale: 1.1;
+    box-shadow: 0px 2px 6px 4px rgba(3, 124, 172, 0.654);    
 }
 
 .btn-toggle-menu{

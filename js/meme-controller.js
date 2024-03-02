@@ -284,8 +284,15 @@ function onSaveMeme(){
     var imageData = gElCanvas.toDataURL('image/png')
     saveImages(imageData,id)
     saveMemes(id)
+    showSuccess()
     // var memeData = getMeme()
     
+}
+
+function showSuccess(){
+    const elSucc = document.querySelector('.success-msg')
+    elSucc.style.display = 'grid'
+    setTimeout((()=> elSucc.style.display = 'none'),2000)
 }
 
 function renderSavedMemes(){
