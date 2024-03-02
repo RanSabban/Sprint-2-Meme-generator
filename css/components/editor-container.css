@@ -57,7 +57,7 @@ svg{
     visibility: hidden;
 }
 
-.decrease-font, .increase-font ,.label-color-selector, .label-color-selector svg{
+.decrease-font, .increase-font ,.label-color-selector, .label-color-selector svg, .save-meme, .right-aligment, .center-aligment, .left-aligment, .delete-line, .add-line, .switch-line{
     width: 5vw;
     border-radius: 1em;
     border-color: rgba(0, 0, 0, 0.828);
@@ -137,3 +137,41 @@ svg{
     background-color: rgba(245, 245, 245, 0.547);
 }
 
+.download-link{
+    display: grid;
+    align-items: center;
+    grid-row: 7;
+    padding: 5px;
+    width: 20vw;
+    text-decoration: none;
+    background-color: rgba(42, 42, 218, 0.894);
+    color: whitesmoke;
+    border-radius: 1em;
+    margin-bottom: 3px;
+    margin-left: 3px;
+    transition: 0.6s;
+    justify-self: start;
+}
+
+.download-link:hover{
+    scale: 1.1;
+}
+
+.share-to-fb{
+    grid-row: 7;
+    width: 20vw;
+    justify-self: end;
+    padding: 5px;
+    text-decoration: none;
+    background-color: rgba(42, 42, 218, 0.894);
+    color: whitesmoke;
+    border-radius: 1em;
+    margin-bottom: 3px;
+    margin-right: 3px;
+    border: none;
+    transition: 0.6s;
+}
+
+.share-to-fb:hover{
+    scale: 1.1;
+}

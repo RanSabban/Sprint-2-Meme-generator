@@ -144,7 +144,7 @@ function checkIfSelected(pos){
     gMeme.lines.forEach((line,idx) => {
         let diffX = Math.abs(pos.x - line.x)
         let diffY = Math.abs(pos.y - line.y)
-        if (diffX <= line.width/2 && diffY <= line.size/2){
+        if (diffX <= line.width/2 && diffY <= line.size){
             selectedLineIdx = idx
         }
     })

@@ -6,6 +6,8 @@ let gCurrColor = 'black'
 let gCurrLine = 0
 let gIsGrabbed = false
 
+const TOUCH_EVENTS = ['touchstart', 'touchmove', 'touchend']
+
 function onInit(){
     gElCanvas = document.querySelector('.canvas-editor')
     gCtx = gElCanvas.getContext('2d')
@@ -15,6 +17,7 @@ function onInit(){
     // renderGallery()
     addMouseListeners()
     addKeyboardListeners()
+    addTouchListeners()
     renderSavedMemes()
 }
 
@@ -99,6 +102,7 @@ function onClick(ev){
 
 function onDown(ev){
     const pos = getEvPos(ev)
+    renderMeme()
     const lineSelectedIdx = checkIfSelected(pos)
     if (lineSelectedIdx === -1) return 
     gCurrLine = lineSelectedIdx
@@ -125,7 +129,17 @@ function getEvPos(ev){
         x: ev.offsetX,
         y: ev.offsetY
     }
-    return pos
+    if (TOUCH_EVENTS.includes(ev.type)) {
+		ev.preventDefault()         // Prevent triggering the mouse events
+		ev = ev.changedTouches[0]   // Gets the first touch point
+
+		// Calc pos according to the touch screen
+		pos = {
+			x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
+			y: ev.pageY - ev.target.offsetTop - ev.target.clientTop,
+		}
+	}
+	return pos
 }
 
 function onAddLine(){
@@ -227,7 +241,11 @@ function addMouseListeners(){
     gElCanvas.addEventListener('mouseup', onUp)
 }
 
-
+function addTouchListeners(){
+	gElCanvas.addEventListener('touchstart', onDown)
+	gElCanvas.addEventListener('touchmove', onMove)
+	gElCanvas.addEventListener('touchend', onUp)
+}
 
 function addKeyboardListeners(){
     document.addEventListener('keydown', onKeyDown)

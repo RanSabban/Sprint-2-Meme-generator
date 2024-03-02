@@ -12,3 +12,21 @@ button {
 img{
     width: 100%;
 }
+
+body.menu-open{
+    opacity: 1;
+    background-color: #1a1a1ada;
+    z-index: 1;
+}
+
+body.menu-open .main-nav-list{
+    display: block;
+    transform: translateX(-25%);
+    opacity: 1;
+}
+
+body.menu-open .main-nav{
+    height: 100vh;
+    /* background: black; */
+    /* z-index: 10; */
+}

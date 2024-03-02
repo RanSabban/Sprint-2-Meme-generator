@@ -57,3 +57,7 @@ function addImg(img){
     onEditorClick()
     onInit()
 }
+
+function toggleMenu() {
+    document.body.classList.toggle('menu-open')
+}
