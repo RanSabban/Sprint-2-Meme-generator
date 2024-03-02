@@ -20,6 +20,11 @@ function onSetFilterBy(filterBy){
     renderGallery()
 }
 
+function updateSearch(keyword){
+   setFilterBy(keyword) 
+   renderGallery()
+}
+
 function onFlexible(){
     const imageId = getRandomImg().id
     const txt = makeLorem(5)
@@ -60,4 +65,28 @@ function addImg(img){
 
 function toggleMenu() {
     document.body.classList.toggle('menu-open')
+}
+
+function renderKeywords(){
+    const elKeywords = document.querySelector('.keywords-container')
+    const keyWords = getKeywordsMap() 
+    let strHTML = ''
+    console.log(keyWords);
+    for (const keyword in keyWords){
+        strHTML += `
+        <span class = 'keyword' style="font-size: ${1+(0.2*keyWords[keyword])}em;" onclick="updateSearch('${keyword}')">${keyword}</span>`
+    }
+    elKeywords.innerHTML = strHTML
+}
+
+function getKeywordsMap(){
+    let mappedImgs = {}
+    let images = getImages()
+    images.map(image => {
+        const keywords = image.keyWords
+        for (var i = 0; i < keywords.length;i++){
+            mappedImgs[keywords[i]] ? mappedImgs[keywords[i]]++ : mappedImgs[keywords[i]] = 1
+        }
+    })
+    return mappedImgs
 }

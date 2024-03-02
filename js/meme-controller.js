@@ -5,6 +5,8 @@ let gCtx
 let gCurrColor = 'black'
 let gCurrLine = 0
 let gIsGrabbed = false
+let gIsFrame = false
+
 
 const TOUCH_EVENTS = ['touchstart', 'touchmove', 'touchend']
 
@@ -19,9 +21,10 @@ function onInit(){
     addKeyboardListeners()
     addTouchListeners()
     renderSavedMemes()
+    renderKeywords()
 }
 
-function renderMeme(){
+function renderMeme(isDownload = false){
     const meme = getMeme()
     // const images = getImages()
     const image = findImgById(meme.selectedImgId)
@@ -32,16 +35,16 @@ function renderMeme(){
         var img = new Image()
         img.src = `img/${meme.selectedImgId}.jpg`
     }
-    img.onload = () => onImageReady(img,meme.lines)
+    img.onload = () => onImageReady(img,meme.lines,isDownload)
 }
 
-function onImageReady(img,lines){
+function onImageReady(img,lines,isDownload){
     gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width
     gCtx.drawImage(img,0,0,gElCanvas.width,gElCanvas.height)
-    drawTxt(lines)
+    drawTxt(lines,isDownload)
 }
 
-function drawTxt(lines){
+function drawTxt(lines,isDownload){
     let heightCounter = 75
     lines.forEach((line,idx) => {
         gCtx.textAlign = 'center'
@@ -70,18 +73,20 @@ function drawTxt(lines){
                 savePos(line,line.x,line.y)
             }
         }
-        if (gCurrLine === idx) markLine(line,line.x,line.y)
+        if (gCurrLine === idx) markLine(line,line.x,line.y,isDownload)
         heightCounter += 75
     })
 }
 
-function markLine(line,x,y){
-    const textWidth = gCtx.measureText(line.txt).width
-    gCtx.beginPath()
-    gCtx.strokeStyle = 'black'
-    gCtx.lineWidth = 2
-    gCtx.rect(x-textWidth/2,y-line.size,textWidth + 5,line.size+2)
-    gCtx.stroke()
+function markLine(line,x,y,isDownload = false){
+    if (!isDownload){
+        const textWidth = gCtx.measureText(line.txt).width
+        gCtx.beginPath()
+        gCtx.strokeStyle = 'black'
+        gCtx.lineWidth = 2
+        gCtx.rect(x-textWidth/2,y-line.size,textWidth + 5,line.size+2)
+        gCtx.stroke()
+    }
 }
 
 function savePos(line,x,y){
@@ -203,8 +208,17 @@ function onDeleteLine(){
 }
 
 function downloadAsImg(elLink){
-    const imgContent = gElCanvas.toDataURL('image/png')
-    elLink.href = imgContent
+        const imgContent = gElCanvas.toDataURL('image/png')
+        elLink.href = imgContent    
+}
+
+function onToggleFrame(){
+    if (gIsFrame){
+        gIsFrame = false
+    } else {
+        gIsFrame = true
+    }
+    renderMeme(gIsFrame)
 }
 
 function onGalleryClick(){
