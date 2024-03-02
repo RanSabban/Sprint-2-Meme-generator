@@ -1,5 +1,6 @@
 html{
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+    font-family: Tahoma;
     text-align: center;
     background-image: url(../../img/black-bgc.jpg);
 }

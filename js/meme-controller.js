@@ -225,11 +225,13 @@ function onGalleryClick(){
     document.querySelector('.editor-container').style.display = 'none'
     document.querySelector('.gallery-container').style.display = 'grid'
     document.querySelector('.saved-memes-container').style.display = 'none'
+    document.querySelector('.about-container').style.display = 'none'
 }
 
 function onEditorClick(){
     document.querySelector('.editor-container').style.display = 'grid'
     document.querySelector('.gallery-container').style.display = 'none'
+    document.querySelector('.about-container').style.display = 'none'
     document.querySelector('.saved-memes-container').style.display = 'none'
 }
 
@@ -237,8 +239,16 @@ function onSavedMemesClick(){
     renderSavedMemes()
     document.querySelector('.editor-container').style.display = 'none'
     document.querySelector('.gallery-container').style.display = 'none'
+    document.querySelector('.about-container').style.display = 'none'
     document.querySelector('.saved-memes-container').style.display = 'grid'
 
+}
+
+function onAboutClick(){
+    document.querySelector('.editor-container').style.display = 'none'
+    document.querySelector('.gallery-container').style.display = 'none'
+    document.querySelector('.saved-memes-container').style.display = 'none'
+    document.querySelector('.about-container').style.display = 'grid'
 }
 
 function resizeCanvas(){
