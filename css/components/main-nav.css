@@ -6,6 +6,7 @@
 }
 
 .main-nav-list{
+    position: absolute;
     grid-auto-flow: column;
     justify-content: space-evenly;
     transform: translateX(200%);
