@@ -13,6 +13,8 @@
     --greenLogo: #58c93a;
     --greenTrans: #59c93a94;
 
+    --bgcColor: rgb(13, 2, 73,0.95);
+
     /* --bgcHeader: linear-gradient(to right, #0f9bb3 0%, #30bb73 100%); */
     /* --bgcHeader: linear-gradient(to right, #003399 0%, #0000cc 75%); */
 }

@@ -14,8 +14,7 @@ img {
 }
 
 body {
-    background-image: url(/img/webpage-bgc.svg);
-    background-size: cover;
+    background-color: var(--bgcColor);
     margin: 0;
 }
 
