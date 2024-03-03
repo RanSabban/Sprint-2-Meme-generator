@@ -1,6 +1,7 @@
 'use strict'
 
 function renderGallery(){
+    renderKeywords()
     const images = getImages()
     let imgsHTML = []
     imgsHTML = images.map(img => {
@@ -20,8 +21,19 @@ function onSetFilterBy(filterBy){
     renderGallery()
 }
 
+function onClearFilter(){
+    setFilterBy('')
+    inputSet('')
+    renderGallery()
+}
+
+function inputSet(str){
+    document.querySelector('.filter-gallery').value = str
+}
+
 function updateSearch(keyword){
    setFilterBy(keyword) 
+   inputSet(keyword)
    renderGallery()
 }
 
@@ -74,7 +86,7 @@ function renderKeywords(){
     console.log(keyWords);
     for (const keyword in keyWords){
         strHTML += `
-        <span class = 'keyword' style="font-size: ${1+(0.2*keyWords[keyword])}em;" onclick="updateSearch('${keyword}')">${keyword}</span>`
+        <span class = 'keyword' style="font-size: ${0.5+(0.1*keyWords[keyword])}em;" onclick="updateSearch('${keyword}')">${keyword}</span>`
     }
     elKeywords.innerHTML = strHTML
 }

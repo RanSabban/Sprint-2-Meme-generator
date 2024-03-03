@@ -7,21 +7,28 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link>
-
+    <head>
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+        />
+      </head>
     <title>Meme Generator</title>
 </head>
 
 <body class="main-layout grid" onload="renderGallery()">
+    <div class="main-screen" onclick="toggleMenu()"></div>
 
     <header class="main-header grid full">
-        <nav class="main-nav-container grid">
-            <div class="logo">MEME</div>
+        <nav class="main-nav-container grid space-between align-center flow-column">
+            <div class="logo">MEME GENERATOR<span class="point">.</span></div>
             <div class="main-nav">
                 <ul class="main-nav-list grid clean-list">
                     <li><button onclick="onGalleryClick()">Gallery</button></li>
                     <li><button onclick="onAboutClick()">About</button></li>
                     <li><button onclick="onSavedMemesClick()">Saved Memes</button></li>
                 </ul>
+                
             </div>
             <button class="btn-toggle-menu" onclick="toggleMenu()">
                 <img src="img/burger-bar.svg">
@@ -29,8 +36,8 @@
         </nav>
     </header>
 
-    <main class="main-container grid">
-        <div class="success-msg">Saved</div>
+    <main class="main-container">
+        <!-- <div class="success-msg">Saved</div> -->
         <section class="editor-container">
             <section class="canvas-container">
                 <canvas class="canvas-editor" width="450" height="450"></canvas>
@@ -38,12 +45,12 @@
             <section class="actions">
                 <input class="meme-text" type="text" name="meme-text" id="meme-text" oninput="onTextChange(this.value)">
                 <label class="label-color-selector" for="color-selector"><img src="img/color-selector.svg"></label>
-                <input class="color-selector" type="color" name="color-selector" id="color-selector" onchange="onSetColor(this.value)">
-                <button class="increase-font" onclick="onIncreaseFont()"><img src="img/increase-font.svg"></button>
-                <button class="decrease-font" onclick="onDecreaseFont()"><img src="img/decrease-font.svg"></button>
-                <button class="switch-line" onclick="onSwitchLine()"><img src="img/switch-btn.svg"></button>
-                <button class="add-line" onclick="onAddLine()"><img src="img/plus-btn.svg"></button>
-                <button class="delete-line" onclick="onDeleteLine()"><img src="img/delete-btn.svg"></button>
+                <input class="color-selector" type="color" name="color-selector" id="color-selector" oninput="onSetColor(this.value)">
+                <button class="increase-font btn1" onclick="onIncreaseFont()"><img src="img/increase-font.svg"></button>
+                <button class="decrease-font btn1" onclick="onDecreaseFont()"><img src="img/decrease-font.svg"></button>
+                <button class="switch-line btn1" onclick="onSwitchLine()"><img src="img/switch-btn.svg"></button>
+                <button class="add-line btn1" onclick="onAddLine()"><img src="img/plus-btn.svg"></button>
+                <button class="delete-line btn1" onclick="onDeleteLine()"><img src="img/delete-btn.svg"></button>
                 <select name="Font-selector" onchange="onFontSelect(this.value)">
                     <option value ="">Select Font</option>
                     <option value ="impact">Impact (default)</option>
@@ -52,24 +59,27 @@
                     <option value ="sans-serif">Sans Sherif</option>
                     <option value ="Verdana">Verdana</option>
                 </select>
-                <button class="remove-frame" onclick="onToggleFrame()">Toggle Frame</button>
-                <button class="left-aligment" onclick="onLeftAligment()"><img src="img/align-left.svg"></button>
-                <button class="center-aligment" onclick="onCenterAligment()"><img src="img/align-center.svg"></button>
-                <button class="right-aligment" onclick="onRightAligment()"><img src="img/align-right.svg"></button>
-                <button class="save-meme" onclick="onSaveMeme()"><img src="img/save-btn.svg"></button>
-                <a href="#" class="download-link" onclick="downloadAsImg(this)" download="my-img.jpg">Download</a>
-                <button class="share-to-fb" onclick="onUploadImgFB()">Upload to FB</button>
+                <button class="remove-frame btn1" onclick="onToggleFrame()">Toggle Frame</button>
+                <button class="left-aligment btn1" onclick="onLeftAligment()"><img src="img/align-left.svg"></button>
+                <button class="center-aligment btn1" onclick="onCenterAligment()"><img src="img/align-center.svg"></button>
+                <button class="right-aligment btn1" onclick="onRightAligment()"><img src="img/align-right.svg"></button>
+                <button class="save-meme btn1" onclick="onSaveMeme()"><img src="img/save-btn.svg"></button>
+                <button class="share-to-fb btn1" onclick="onUploadImgFB()">Upload to FB</button>
+                <a href="#" class="download-link btn1" onclick="downloadAsImg(this)" download="my-img.jpg">Download</a>
             </section>
         </section>
         <section class="gallery-container">
-            <section class="gallery-actions">
-                <input class = "filter-gallery"placeholder="Filter memes gallery" name="filter-by"type="text" oninput="onSetFilterBy(this.value)">
+            <section class="gallery-actions grid align-center">
+                <div class="filter-gallery-container">
+                    <input class = "filter-gallery"placeholder="Filter memes gallery" name="filter-by"type="text" oninput="onSetFilterBy(this.value)">
+                    <button class="clear-btn btn round" onclick="onClearFilter()">Clear</button>
+                </div>
+                <div class="keywords-container flex space-between align-center">
+                </div>
                 <button class="flexible" onclick="onFlexible()">I'm flexible</button>
-                <input type="file" name="image" class="image-input" onchange="onImgInput(event)" accept="image/*">    
+                <label for="image-upload" class="label-img-upload"><img src="img/upload-icon.svg"></label>
+                <input type="file" name="image-upload" class="image-input hidden" onchange="onImgInput(event)" accept="image/*" id="image-upload">    
             </section>
-            <div class="keywords-container">
-                <!-- <span class = 'keyword' style="font-size: 1em;" >toys</span> -->
-            </div>
             <section class="images-container">
 
             </section>

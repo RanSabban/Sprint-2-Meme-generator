@@ -1,0 +1,11 @@
+.logo {
+    font-size: 2em;
+    align-self: center;
+    letter-spacing: 0.1em;
+    color: var(--meduimWhite);
+    margin-inline-start: 5vw;
+}
+
+.point{
+    color: var(--greenLogo);
+}

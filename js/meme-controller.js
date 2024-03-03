@@ -21,7 +21,7 @@ function onInit(){
     addKeyboardListeners()
     addTouchListeners()
     renderSavedMemes()
-    renderKeywords()
+    // renderKeywords()
 }
 
 function renderMeme(isDownload = false){
@@ -107,11 +107,11 @@ function onClick(ev){
 
 function onDown(ev){
     const pos = getEvPos(ev)
-    renderMeme()
     const lineSelectedIdx = checkIfSelected(pos)
     if (lineSelectedIdx === -1) return 
     gCurrLine = lineSelectedIdx
     gIsGrabbed = true
+    updateInput()
     renderMeme()
 }
 
@@ -147,11 +147,18 @@ function getEvPos(ev){
 	return pos
 }
 
+function updateInput(){
+    const meme = getMeme()
+    const txt = gMeme.lines[gCurrLine].txt
+    document.querySelector('.meme-text').value = txt
+}
+
 function onAddLine(){
     addLine()
     const meme = getMeme()
     gCurrLine = meme.lines.length - 1
     renderMeme()
+    updateInput()
 }
 
 function onSwitchLine(){
@@ -159,6 +166,7 @@ function onSwitchLine(){
     gCurrLine++
     if (gCurrLine > memeLines.length - 1) gCurrLine = 0
     renderMeme()
+    updateInput()
 }
 
 function onTextChange(txt){
@@ -169,7 +177,12 @@ function onTextChange(txt){
 function onSetColor(color){
     gCurrColor = color
     updateColor(color,gCurrLine)
+    updateBgc(color)
     renderMeme()
+}
+
+function updateBgc(color){
+    document.querySelector('.label-color-selector').style.backgroundColor = color
 }
 
 function onIncreaseFont(){
@@ -208,8 +221,8 @@ function onDeleteLine(){
 }
 
 function downloadAsImg(elLink){
-        const imgContent = gElCanvas.toDataURL('image/png')
-        elLink.href = imgContent    
+    const imgContent = gElCanvas.toDataURL('image/png')
+    elLink.href = imgContent        
 }
 
 function onToggleFrame(){
@@ -293,7 +306,7 @@ function onKeyDown(ev){
 function onLoadMeme(id){
     console.log(id);
     const memes = getSavedMemes()
-    console.log(memes);
+    // console.log(memes);
     const meme = memes.find(meme => meme.id === id)
     console.log(meme);
     setLoadedMeme(meme)

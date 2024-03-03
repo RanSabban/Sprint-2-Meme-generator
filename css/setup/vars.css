@@ -1,0 +1,18 @@
+:root{
+    /* colors pallete */
+    --lowGrey: #4f4e4e;
+    --meduimGrey: #292929;
+    --highGrey: #1e1e1e83;
+
+    --greyTrans: #29292987;
+
+    --lowWhite: #f8f8f8;
+    --meduimWhite: #c2c1c1;
+    --whiteGrey: #818181;
+
+    --greenLogo: #58c93a;
+    --greenTrans: #59c93a94;
+
+    /* --bgcHeader: linear-gradient(to right, #0f9bb3 0%, #30bb73 100%); */
+    /* --bgcHeader: linear-gradient(to right, #003399 0%, #0000cc 75%); */
+}

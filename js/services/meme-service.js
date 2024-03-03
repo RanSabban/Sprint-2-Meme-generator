@@ -123,7 +123,7 @@ function findImgById(id){
 function addLine(){
     gMeme.lines.push({
         txt: '',
-        size: 20,
+        size: 30,
         color: 'black',
         font: 'Impact',
         align: 'center',

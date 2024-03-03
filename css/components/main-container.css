@@ -1,4 +1,7 @@
 .main-container{
-    row-gap: 20px;
-    align-items: center;
+    display: grid;
+    border-left: 2px solid var(--highGrey);
+    border-right: 2px solid var(--highGrey);
+    padding-top: 80px;
+    justify-items: center;
 }
