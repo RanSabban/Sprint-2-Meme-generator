@@ -34,16 +34,18 @@
         overflow: hidden;
         transition: grid-template-rows 1s;
         align-items: end;
-        background-color: rgba(0, 0, 0, 0.829);
+        background-color: var(--bgcColor);
     }
 
     .main-header .main-nav-list {
         position: fixed;
         grid-auto-flow: row;
-        row-gap: 20px;
-        top: 10vh;
+        /* row-gap: 20px; */
+        top: 0vh;
         transform: translateX(200%);
         transition: transform 1s;
+        align-items: start;
+        height: 10vh;
     }
 
     .main-header .main-nav-list button {
@@ -53,6 +55,8 @@
         color: var(--meduimWhite);
         height: 3vh;
         border-radius: 0.5em;
+        align-items: start;
+        height: 10vh;
     }
 
     .main-header .btn-toggle-menu {
