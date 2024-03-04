@@ -40,6 +40,7 @@ function updateSearch(keyword){
    setFilterBy(keyword) 
    inputSet(keyword)
    renderGallery()
+   onIncreaseKeyWord(keyword)
 }
 
 function onFlexible(){
@@ -101,7 +102,7 @@ function renderKeywords(){
 
 function getKeywordsMap(){
     let mappedImgs = {}
-    let images = getImages()
+    let images = getImagesWithoutFilters()
     images.map(image => {
         const keywords = image.keyWords
         for (var i = 0; i < keywords.length;i++){
@@ -109,4 +110,11 @@ function getKeywordsMap(){
         }
     })
     return mappedImgs
+}
+
+function onIncreaseKeyWord(keyword){
+    // let images = getImagesWithoutFilters()
+    // images[0].keywords.push(keyword)
+    increaseKeyWord(keyword)
+    renderKeywords()
 }

@@ -60,6 +60,17 @@ function getImages(){
     return images
 }
 
+function getImagesWithoutFilters(){
+    if (!gImgs){
+        __createImgs()
+    }
+    return gImgs
+}
+
+function increaseKeyWord(keyword){
+    gImgs[0].keyWords.push(keyword)
+}
+
 function filterByCheck(image){
     for (var i = 0; i < image.keyWords.length;i++){
         if (image.keyWords[i].toLowerCase().includes(gFilterBy.toLowerCase())){
