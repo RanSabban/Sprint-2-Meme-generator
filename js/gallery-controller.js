@@ -11,9 +11,14 @@ function renderGallery(){
 }
 
 function onImgSelect(id){
-    setImg(id)
     onEditorClick()
-    onInit()
+    setTimeout(() => {
+        resetMeme()
+        setImg(id)
+        onInit()
+        renderMeme()    
+    },1700)
+    
 }
 
 function onSetFilterBy(filterBy){
@@ -42,8 +47,9 @@ function onFlexible(){
     const txt = makeLorem(5)
     createMeme(imageId,txt)
     onEditorClick()
-    onInit()
-}
+    setTimeout(()=>{
+        onInit()
+    },1700)}
 
 function getRandomImg(){
     const images = getImages()
@@ -68,12 +74,14 @@ function loadImageFromInput(ev,onImageReady){
 function addImg(img){
     const images = getImages()
     const id = images.length + 1
+    resetMeme()
     updateImages(id,img)
     // saveUserUploadedImg(id,img)
     setImg(id)
     onEditorClick()
-    onInit()
-}
+    setTimeout(()=>{
+        onInit()
+    },1700)}
 
 function toggleMenu() {
     document.body.classList.toggle('menu-open')

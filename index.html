@@ -37,8 +37,8 @@
     </header>
 
     <main class="main-container">
-        <!-- <div class="success-msg">Saved</div> -->
-        <section class="editor-container">
+        <section class="editor-container hide-page">
+            <div class="success-msg">Success</div>
             <section class="canvas-container">
                 <canvas class="canvas-editor" width="450" height="450"></canvas>
             </section>
@@ -68,7 +68,7 @@
                 <a href="#" class="download-link btn1" onclick="downloadAsImg(this)" download="my-img.jpg">Download</a>
             </section>
         </section>
-        <section class="gallery-container">
+        <section class="gallery-container show-page">
             <section class="gallery-actions grid align-center">
                 <div class="filter-gallery-container">
                     <input class = "filter-gallery"placeholder="Filter memes gallery" name="filter-by"type="text" oninput="onSetFilterBy(this.value)">
@@ -84,10 +84,10 @@
 
             </section>
         </section>
-        <section class="saved-memes-container">
+        <section class="saved-memes-container hide-page">
 
         </section>
-        <section class="about-container">
+        <section class="about-container hide-page">
             <h1 class="about-text">About the website</h1>
             <h2 class="about-text">This website was developed by Ran Sabban for coding academy sprint 2 ex</h2>
             <p class="about-text">

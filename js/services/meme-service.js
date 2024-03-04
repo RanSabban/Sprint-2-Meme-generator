@@ -69,6 +69,25 @@ function filterByCheck(image){
     return false
 }
 
+function resetMeme(){
+    gMeme = {
+        selectedImgId: 1, 
+        selectedLineIdx: 0, 
+        lines: [
+            {
+                txt: 'Welcome to MEME GENRATOR',
+                size: 25, 
+                color: 'black',
+                font: 'Impact',
+                align: 'center',
+                x: 50,
+                y: 75
+            },
+        ]
+        
+    }
+}
+
 function setFilterBy(filterBy){
     gFilterBy = filterBy
 }
@@ -112,7 +131,8 @@ function updateImages(id,img){
     gImgs.push({
         id: id,
         img: img,
-        isUserUpload: true
+        isUserUpload: true,
+        keyWords: generateKeywords()
     })
 }
 

@@ -55,3 +55,64 @@
 .relative {
     position: relative;
 }
+
+body .show-page {
+    display: grid;
+    /* transition: transform 2s; */
+    transition: transform 2s;
+    transform: translateX(0%);
+    animation: movepagein;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+
+}
+
+body .hide-page {
+    transition: transform 2s;
+    animation: movepageout;
+    animation-duration: 2s;    
+    animation-fill-mode: forwards;
+    /* display: none; */
+}
+
+@keyframes movepagein {
+    0% {
+        transform: translateX(-300%);
+        /* display: grid; */
+    }
+
+    25% {
+        transform: translateX(-200%);
+    }
+
+    50% {
+        transform: translateX(-50%);
+    }
+    100% {
+        transform: translateX(0%);
+        display: grid;
+    }
+
+}
+
+@keyframes movepageout {
+     0% {
+        transform: translateX(0%);
+        display: grid;
+    }
+
+    25% {
+        transform: translateX(50%);
+        display: grid;
+    }
+
+    50% {
+        transform: translateX(-300%);
+        display: none;
+    }
+    
+    100% {
+        transform: translateX(-300%);
+        display: none;
+    }
+}

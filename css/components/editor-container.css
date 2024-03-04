@@ -3,6 +3,8 @@
     grid-template-columns: 45vw 45vw;
     grid-auto-flow: column;
     column-gap: 20px;
+    transform: translateX(-300%);
+    transition: transform 1.5s;
 }
 
 .canvas-container, .canvas-editor{
@@ -107,6 +109,18 @@
 
 .download-link:hover, .share-to-fb:hover , .remove-frame:hover {
     scale: 1.1;
+}
+
+.success-msg{
+    display: none;
+    align-items: center;
+    position: absolute;
+    right: 1vw;
+    bottom: 1vh;
+    width: 20vw;
+    height: 5vh;
+    background-color: rgba(24, 137, 51, 0.558);
+    color: whitesmoke;
 }
 
 
