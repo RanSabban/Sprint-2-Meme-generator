@@ -99,8 +99,8 @@
     display: grid;
     align-items: center;
     padding: 5px;
-    width: 20vw;
-    height: 3vh;
+    width: 15vw;
+    height: 4vh;
     text-decoration: none;
     font-style: inherit;
     color: inherit;
@@ -109,6 +109,26 @@
 
 .download-link:hover, .share-to-fb:hover , .remove-frame:hover {
     scale: 1.1;
+}
+
+.font-selector {
+    grid-column: 1;
+}
+
+.remove-frame {
+    grid-column: 3/5;
+    justify-self: start;
+    background: rgba(251, 184, 60, 0.776);
+}
+
+.share-to-fb {
+    grid-column: 1/3;
+    background-color: royalblue;
+}
+
+.download-link{
+    grid-column: 4/6;
+    background-color: var(--greenTrans);
 }
 
 .success-msg{
