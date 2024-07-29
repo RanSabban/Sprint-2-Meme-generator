@@ -40,7 +40,7 @@
         <section class="editor-container hide-page">
             <div class="success-msg">Success</div>
             <section class="canvas-container">
-                <canvas class="canvas-editor" width="450" height="450"></canvas>
+                <canvas class="canvas-editor" width="450" height="450" id="gElCanvas"></canvas>
             </section>
             <section class="actions">
                 <input class="meme-text" type="text" name="meme-text" id="meme-text" oninput="onTextChange(this.value)">
@@ -66,6 +66,7 @@
                 <button class="save-meme btn1" onclick="onSaveMeme()"><img src="img/save-btn.svg"></button>
                 <button class="share-to-fb btn1" onclick="onUploadImgFB()">Upload to FB</button>
                 <a href="#" class="download-link btn1" onclick="downloadAsImg(this)" download="my-img.jpg">Download</a>
+                <button onclick="goFullscreen()">Go Full Screen</button>
             </section>
         </section>
         <section class="gallery-container show-page">

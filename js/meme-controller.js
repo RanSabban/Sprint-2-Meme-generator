@@ -311,6 +311,23 @@ function resizeCanvas(){
     renderMeme()
 }
 
+function goFullscreen() {
+    const elCanvas = document.getElementById("gElCanvas");
+    console.log(elCanvas);
+    if (elCanvas.requestFullscreen) {
+        elCanvas.requestFullscreen();
+    } else if (elCanvas.mozRequestFullScreen) { // Firefox
+        elCanvas.mozRequestFullScreen();
+    } else if (elCanvas.webkitRequestFullscreen) { // Chrome, Safari, and Opera
+        elCanvas.webkitRequestFullscreen();
+    } else if (elCanvas.msRequestFullscreen) { // IE/Edge
+        elCanvas.msRequestFullscreen();
+    }
+
+    // Ensure canvas size is updated in fullscreen mode
+    resizeCanvas();
+}
+
 function addMouseListeners(){
     gElCanvas.addEventListener('click', onClick)
     gElCanvas.addEventListener('mousedown', onDown)
@@ -388,4 +405,6 @@ function renderSavedMemes(){
     })
     document.querySelector('.saved-memes-container').innerHTML = strHTML.join('')
 }
+
+
 
